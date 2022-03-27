@@ -1,0 +1,45 @@
+================
+Single node
+================
+foo
+
+----------------
+(document
+	(node
+		(identifier)))
+
+================
+Single-line nodes
+================
+foo
+bar
+baz
+
+----------------
+(document
+	(node
+		(identifier))
+	(node
+		(identifier))
+	(node
+		(identifier)))
+
+================
+Multi-line nodes
+================
+foo; bar; baz
+quux
+boo
+
+----------------
+(document
+	(node
+		(identifier))
+	(node
+		(identifier))
+	(node
+		(identifier))
+	(node
+		(identifier))
+	(node
+		(identifier)))
