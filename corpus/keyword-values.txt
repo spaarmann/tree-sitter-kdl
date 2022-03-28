@@ -1,0 +1,28 @@
+================
+Keyword values
+================
+foo false true null \
+    bar=false quux=true baz=null
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(boolean))
+		(value
+			(boolean))
+		(value
+			(null))
+		(prop
+			(identifier)
+			(value
+				(boolean)))
+		(prop
+			(identifier)
+			(value
+				(boolean)))
+		(prop
+			(identifier)
+			(value
+				(null)))))

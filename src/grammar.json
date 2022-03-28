@@ -166,8 +166,21 @@
       }
     },
     "value": {
-      "type": "SYMBOL",
-      "name": "number"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "null"
+        }
+      ]
     },
     "number": {
       "type": "CHOICE",
@@ -450,6 +463,23 @@
           }
         }
       ]
+    },
+    "boolean": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "false"
+        },
+        {
+          "type": "STRING",
+          "value": "true"
+        }
+      ]
+    },
+    "null": {
+      "type": "STRING",
+      "value": "null"
     },
     "_linespace": {
       "type": "CHOICE",

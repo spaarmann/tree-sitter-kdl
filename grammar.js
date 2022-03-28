@@ -39,7 +39,7 @@ module.exports = grammar({
 
 		identifier: $ => repeat1(/[a-z]/), // TODO
 
-		value: $ => $.number, // TODO
+		value: $ => choice($.number, $.boolean, $.null), // TODO
 
 		number: $ => choice($._decimal, $._hex, $._octal, $._binary),
 		_decimal: $ => seq(optional($._sign), $._integer, optional(seq(".", $._integer)), optional($._exponent)),
@@ -52,6 +52,9 @@ module.exports = grammar({
 		_hex_digit: $ => /[0-9a-fA-F]/,
 		_octal: $ => seq(optional($._sign), "0o", /[0-7]/, repeat(/[0-7_]/)),
 		_binary: $ => seq(optional($._sign), "0b", choice("0", "1"), repeat(choice("0", "1", "_"))),
+
+		boolean: $ => choice("false", "true"),
+		null: $ => "null",
 
 		// The different kinds of whitespace defined by KDL
 		_linespace: $ => choice($._newline, $._ws), // TODO: , $._single_line_comment),
