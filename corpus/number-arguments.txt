@@ -1,0 +1,53 @@
+================
+Integer arguments
+================
+foo 20 +20 -20 0xA9BF +0o123 -0b00101
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(number))
+		(value
+			(number))
+		(value
+			(number))
+		(value
+			(number))
+		(value
+			(number))
+		(value
+			(number))))
+
+================
+Decimal arguments
+================
+foo 20.78 -20.3200 +18.53123
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(number))
+		(value
+			(number))
+		(value
+			(number))))
+
+================
+Exponential arguments
+================
+foo 1e10 +5e-80 -0.123e+102
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(number))
+		(value
+			(number))
+		(value
+			(number))))

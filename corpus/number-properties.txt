@@ -1,0 +1,77 @@
+================
+Integer properties
+================
+foo x=20 y=+20 z=-20 bar=0xA9BF quux=+0o123 blub=-0b00101
+
+----------------
+(document
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))))
+
+================
+Decimal arguments
+================
+foo bar=20.78 quux=-20.3200 zap=+18.53123
+
+----------------
+(document
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))))
+
+================
+Exponential arguments
+================
+foo bar=1e10 quux=+5e-80 zap=-0.123e+102
+
+----------------
+(document
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))))
