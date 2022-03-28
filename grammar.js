@@ -13,27 +13,13 @@ module.exports = grammar({
 	// to allow a node to be ended by EOF in addition to newline.
 
 	rules: {
-		document: $ => repeat(seq(repeat($._linespace), $.node, prec.left(repeat($._linespace)))),
-
-//Unresolved conflict for symbol sequence:
-//
-//  identifier  _escline  •  '﻿'  …
-//
-//Possible interpretations:
-//
-//  1:  identifier  (_node_space  _escline  •  _node_space_repeat1)
-//  2:  identifier  (_node_space  _escline)  •  '﻿'  …
-//
-//Possible resolutions:
-//
-//  1:  Specify a left or right associativity in `_node_space`
-//  2:  Add a conflict for these rules: `_node_space`
+		document: $ => seq(optional($._linespace), repeat(seq($.node, optional($._linespace)))),
 
 		node: $ => seq($.identifier, repeat(seq($._node_space, $._node_prop_or_arg)),
 			optional($._node_space), $._node_terminator),
 		_node_prop_or_arg: $ => choice($.prop, $.value),
 		_node_space: $ => choice(seq(repeat($._ws), repeat1(seq($._escline, repeat($._ws)))), repeat1($._ws)),
-		_node_terminator: $ => choice(";", $._newline),
+		_node_terminator: $ => choice(";", $._single_line_comment, $._newline), // TODO: eof
 
 		prop: $ => seq($.identifier, "=", $.value),
 
@@ -57,11 +43,13 @@ module.exports = grammar({
 		null: $ => "null",
 
 		// The different kinds of whitespace defined by KDL
-		_linespace: $ => choice($._newline, $._ws), // TODO: , $._single_line_comment),
+		_linespace: $ => choice($._newline, $._ws, $._single_line_comment),
 		_newline: $ => "\n", // TODO: Whole newline table
 		_ws: $ => choice("\uFEFF" /* BOM */, $._unicode_space), // TODO: , $._multi_line_comment),
-		_unicode_space: $ => " ", // TODO: Wholte space table
+		_unicode_space: $ => " ", // TODO: Whole space table
 
-		_escline: $ => seq("\\", repeat($._ws), $._newline), // TODO: Should allow a comment too
+		_escline: $ => seq("\\", repeat($._ws), choice($._single_line_comment, $._newline)), // TODO: Should allow a comment too
+
+		_single_line_comment: $ => seq("//", repeat1(/[^\n]/), $._newline), // TODO: Should allow EOF, should be $._newline, not \n
 	}
 });

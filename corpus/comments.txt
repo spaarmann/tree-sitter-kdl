@@ -1,0 +1,35 @@
+================
+Only comment
+================
+// a comment
+
+----------------
+(document)
+
+================
+Foo
+================
+foo // a node terminate by a comment
+
+----------------
+(document
+	(node
+		(identifier)))
+
+================
+Single-line comments
+================
+// a comment
+foo // a node terminate by a comment
+bar \ // a comment following a line termination
+    5.0
+// a trailing comment
+
+----------------
+(document
+	(node
+		(identifier))
+	(node
+		(identifier)
+		(value
+			(number))))
