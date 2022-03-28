@@ -19,7 +19,7 @@ module.exports = grammar({
 			optional($._node_space), $._node_terminator),
 		_node_prop_or_arg: $ => choice($.prop, $.value),
 		_node_space: $ => choice(seq(repeat($._ws), repeat1(seq($._escline, repeat($._ws)))), repeat1($._ws)),
-		_node_terminator: $ => choice(";", $._single_line_comment, $._newline), // TODO: eof
+		_node_terminator: $ => choice(";", $.single_line_comment, $._newline), // TODO: eof
 
 		prop: $ => seq($.identifier, "=", $.value),
 
@@ -43,13 +43,13 @@ module.exports = grammar({
 		null: $ => "null",
 
 		// The different kinds of whitespace defined by KDL
-		_linespace: $ => choice($._newline, $._ws, $._single_line_comment),
+		_linespace: $ => choice($._newline, $._ws, $.single_line_comment),
 		_newline: $ => "\n", // TODO: Whole newline table
 		_ws: $ => choice("\uFEFF" /* BOM */, $._unicode_space), // TODO: , $._multi_line_comment),
 		_unicode_space: $ => " ", // TODO: Whole space table
 
-		_escline: $ => seq("\\", repeat($._ws), choice($._single_line_comment, $._newline)), // TODO: Should allow a comment too
+		_escline: $ => seq("\\", repeat($._ws), choice($.single_line_comment, $._newline)), // TODO: Should allow a comment too
 
-		_single_line_comment: $ => seq("//", repeat1(/[^\n]/), $._newline), // TODO: Should allow EOF, should be $._newline, not \n
+		single_line_comment: $ => seq("//", repeat1(/[^\n]/), $._newline), // TODO: Should allow EOF, should be $._newline, not \n
 	}
 });

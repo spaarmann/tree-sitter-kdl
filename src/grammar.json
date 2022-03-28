@@ -148,7 +148,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_single_line_comment"
+          "name": "single_line_comment"
         },
         {
           "type": "SYMBOL",
@@ -509,7 +509,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_single_line_comment"
+          "name": "single_line_comment"
         }
       ]
     },
@@ -553,7 +553,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_single_line_comment"
+              "name": "single_line_comment"
             },
             {
               "type": "SYMBOL",
@@ -563,7 +563,7 @@
         }
       ]
     },
-    "_single_line_comment": {
+    "single_line_comment": {
       "type": "SEQ",
       "members": [
         {

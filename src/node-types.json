@@ -15,6 +15,10 @@
         {
           "type": "node",
           "named": true
+        },
+        {
+          "type": "single_line_comment",
+          "named": true
         }
       ]
     }
@@ -38,6 +42,10 @@
         },
         {
           "type": "prop",
+          "named": true
+        },
+        {
+          "type": "single_line_comment",
           "named": true
         },
         {
@@ -70,6 +78,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "single_line_comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "value",

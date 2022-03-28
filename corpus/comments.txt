@@ -4,7 +4,8 @@ Only comment
 // a comment
 
 ----------------
-(document)
+(document
+	(single_line_comment))
 
 ================
 Foo
@@ -14,22 +15,27 @@ foo // a node terminate by a comment
 ----------------
 (document
 	(node
-		(identifier)))
+		(identifier)
+		(single_line_comment)))
 
 ================
 Single-line comments
 ================
 // a comment
-foo // a node terminate by a comment
+foo // a node terminated by a comment
 bar \ // a comment following a line termination
     5.0
 // a trailing comment
 
 ----------------
 (document
-	(node
-		(identifier))
+	(single_line_comment)
 	(node
 		(identifier)
+		(single_line_comment))
+	(node
+		(identifier)
+		(single_line_comment)
 		(value
-			(number))))
+			(number)))
+	(single_line_comment))
