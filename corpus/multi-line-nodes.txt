@@ -1,0 +1,40 @@
+================
+Line continuations
+================
+foo 20 a=2 \
+    b=3 40
+
+bar x=3 \
+    y=4 \
+    z=8
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(number))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(value
+			(number)))
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))))
