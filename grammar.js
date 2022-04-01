@@ -19,10 +19,9 @@ module.exports = grammar({
 
 		identifier: $ => /[a-z][a-z0-9]*/, // TODO
 
-		value: $ => choice($.number, $.boolean, $.null), // TODO
+		value: $ => choice($.number, $.boolean, $.null, $.string), // TODO
 
 		number: $ => choice($._decimal, $._hex, $._octal, $._binary),
-
 		_binary: $ => /[+-]?0b[01][01_]*/,
 		_octal: $ => /[+-]?0o[0-7][0-7_]*/,
 		_hex: $ => /[+-]?0x[0-9a-fA-F][0-9a-fA-F_]*/,
@@ -30,6 +29,8 @@ module.exports = grammar({
 
 		boolean: $ => choice("false", "true"),
 		null: $ => "null",
+
+		string: $ => /"([^\\"]|\\([\\/bfnrt]|u\{[0-9a-fA-F]{1,6}\}))*"/, // TODO: raw strings
 
 		// The different kinds of whitespace defined by KDL
 		_linespace: $ => choice($._newline, $.single_line_comment),

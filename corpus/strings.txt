@@ -1,0 +1,31 @@
+================
+Simple strings
+================
+foo "hellO" "bar" baz="123#+.,>|"
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(string))
+		(value
+			(string))
+		(prop
+			(identifier)
+			(value
+				(string)))))
+
+================
+String escapes
+================
+foo "\t \b \\ \/ / etc" "\u{0192} and \u{Fee0Fe}"
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(string))
+		(value
+			(string))))
