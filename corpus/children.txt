@@ -1,7 +1,9 @@
 ================
 Single child
 ================
-foo { child1 }
+foo {
+	child
+}
 
 ----------------
 (document
@@ -18,7 +20,7 @@ foo {
 	child3
 }
 
-bar { child }
+bar { child; }
 
 ----------------
 (document

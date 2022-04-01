@@ -24,11 +24,6 @@
     }
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "node",
     "named": true,
     "fields": {},
@@ -112,39 +107,7 @@
     }
   },
   {
-    "type": "+",
-    "named": false
-  },
-  {
-    "type": "-",
-    "named": false
-  },
-  {
-    "type": ".",
-    "named": false
-  },
-  {
     "type": "//",
-    "named": false
-  },
-  {
-    "type": "0",
-    "named": false
-  },
-  {
-    "type": "0b",
-    "named": false
-  },
-  {
-    "type": "0o",
-    "named": false
-  },
-  {
-    "type": "0x",
-    "named": false
-  },
-  {
-    "type": "1",
     "named": false
   },
   {
@@ -156,24 +119,16 @@
     "named": false
   },
   {
-    "type": "E",
-    "named": false
-  },
-  {
     "type": "\\",
-    "named": false
-  },
-  {
-    "type": "_",
-    "named": false
-  },
-  {
-    "type": "e",
     "named": false
   },
   {
     "type": "false",
     "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
   },
   {
     "type": "null",
@@ -189,10 +144,6 @@
   },
   {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "﻿",
     "named": false
   }
 ]
