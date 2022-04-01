@@ -1,0 +1,36 @@
+================
+Single child
+================
+foo { child1 }
+
+----------------
+(document
+	(node
+		(identifier)
+		(node
+			(identifier))))
+
+================
+Empty children
+================
+foo {
+	child1; child2
+	child3
+}
+
+bar { child }
+
+----------------
+(document
+	(node
+		(identifier)
+		(node
+			(identifier))
+		(node
+			(identifier))
+		(node
+			(identifier)))
+	(node
+		(identifier)
+		(node
+			(identifier))))

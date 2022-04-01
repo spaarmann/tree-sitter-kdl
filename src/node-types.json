@@ -41,6 +41,10 @@
           "named": true
         },
         {
+          "type": "node",
+          "named": true
+        },
+        {
           "type": "prop",
           "named": true
         },
@@ -177,6 +181,14 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   },
   {

@@ -15,15 +15,33 @@ module.exports = grammar({
 	rules: {
 		document: $ => seq(optional($._linespace), repeat(seq($.node, optional($._linespace)))),
 
-		node: $ => seq($.identifier, repeat(seq($._node_space, $._node_prop_or_arg)),
-			optional($._node_space), $._node_terminator),
+//    identifier  _node_props_args_children_repeat1  _node_prop_or_arg  _node_props_args_children_repeat1  _node_prop_or_arg  •  '﻿'  …
+//
+//1:  identifier  _node_props_args_children_repeat1  _node_prop_or_arg  (_node_props_args_children  _node_props_args_children_repeat1  _node_prop_or_arg  •  _node_props_args_children  _node_props_args_children_repeat1)
+//2:  identifier  _node_props_args_children_repeat1  _node_prop_or_arg  (_node_props_args_children  _node_props_args_children_repeat1  _node_prop_or_arg  •  _node_props_args_children)
+//3:  identifier  _node_props_args_children_repeat1  _node_prop_or_arg  (_node_props_args_children  _node_props_args_children_repeat1  _node_prop_or_arg  •  _node_props_args_children_repeat1)
+//4:  identifier  _node_props_args_children_repeat1  _node_prop_or_arg  (_node_props_args_children  _node_props_args_children_repeat1  _node_prop_or_arg)  •  '﻿'  …
+
+		node: $ => seq($.identifier, $._node_props_args_children, $._node_terminator),
+		// Repeatedly parse props or args, until encountering a '{' or some token not valid in a
+		// node declaration. In the former case, parse the children. Either way, stop afterwards.
+		_node_props_args_children: $ => seq(
+			repeat1($._node_space),
+			choice(
+				$._node_children,
+				seq($._node_prop_or_arg, optional($._node_props_args_children)),
+			),
+			repeat($._node_space),
+		),
 		_node_prop_or_arg: $ => choice($.prop, $.value),
-		_node_space: $ => choice(seq(repeat($._ws), repeat1(seq($._escline, repeat($._ws)))), repeat1($._ws)),
+		_node_children: $ => seq("{", optional($._linespace), repeat(seq($.node, optional($._linespace))), "}"),
+		//_node_space: $ => choice(seq(repeat($._ws), repeat1(seq($._escline, repeat($._ws)))), repeat1($._ws)),
+		_node_space: $ => choice($._ws, $._escline),
 		_node_terminator: $ => choice(";", $.single_line_comment, $._newline), // TODO: eof
 
 		prop: $ => seq($.identifier, "=", $.value),
 
-		identifier: $ => repeat1(/[a-z]/), // TODO
+		identifier: $ => repeat1(/[a-z]/), //seq(/[a-z]/, repeat(/[a-z0-9]/)), // TODO
 
 		value: $ => choice($.number, $.boolean, $.null), // TODO
 
@@ -48,7 +66,7 @@ module.exports = grammar({
 		_ws: $ => choice("\uFEFF" /* BOM */, $._unicode_space), // TODO: , $._multi_line_comment),
 		_unicode_space: $ => " ", // TODO: Whole space table
 
-		_escline: $ => seq("\\", repeat($._ws), choice($.single_line_comment, $._newline)), // TODO: Should allow a comment too
+		_escline: $ => seq("\\", repeat($._ws), choice($.single_line_comment, $._newline)),
 
 		single_line_comment: $ => seq("//", repeat1(/[^\n]/), $._newline), // TODO: Should allow EOF, should be $._newline, not \n
 	}
