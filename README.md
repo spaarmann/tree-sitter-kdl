@@ -30,6 +30,9 @@ Additionally, the following things are not yet implemented:
 * Full newline character list
 * EOF ending the last node; currently a trailing newline is required
 
+And lastly, the grammar currently matches some *invalid* files too. For example, KDL does not allow
+whitespace immediately following the `=` in a property, but this grammar will currently accept it.
+
 ## Syntax highlighting
 
 A very basic query file for tree-sitter syntax highlighting is also included in
