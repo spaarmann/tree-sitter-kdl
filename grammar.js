@@ -1,7 +1,8 @@
 module.exports = grammar({
 	name: 'kdl',
 
-	extras: $ => [" ", "\t", "\uFEFF"], // TODO: Whitespace table
+	// See Whitespace table in spec; FEFF is explicitly allowed as whitespace in grammar
+	extras: $ => ["\t", " ", "\u00A0", "\u1680", /[\u2000-\u200A]/, "\u202F", "\u205F", "\u3000", "\uFEFF"],
 
 	// TODO: We currently require a trailing newline at the end because I haven't figured out a way
 	// to allow a node to be ended by EOF in addition to newline.
@@ -32,9 +33,8 @@ module.exports = grammar({
 
 		string: $ => /"([^\\"]|\\([\\/bfnrt]|u\{[0-9a-fA-F]{1,6}\}))*"/, // TODO: raw strings
 
-		// The different kinds of whitespace defined by KDL
 		_linespace: $ => choice($._newline, $.single_line_comment),
-		_newline: $ => "\n", // TODO: Whole newline table
+		_newline: $ => /\r\n|\r|\n|\u{0085}|\u{000C}|\u{2028}|\u{2029}/,
 
 		_escline: $ => seq("\\", choice($.single_line_comment, $._newline)),
 

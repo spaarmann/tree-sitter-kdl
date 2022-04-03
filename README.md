@@ -26,8 +26,6 @@ Supported elements:
 
 Additionally, the following things are not yet implemented:
 * Full range of unicode identifier characters
-* Full whitespace character list
-* Full newline character list
 * EOF ending the last node; currently a trailing newline is required
 
 And lastly, the grammar currently matches some *invalid* files too. For example, KDL does not allow
