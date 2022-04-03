@@ -29,3 +29,19 @@ foo "\t \b \\ \/ / etc" "\u{0192} and \u{Fee0Fe}"
 			(string))
 		(value
 			(string))))
+
+================
+Multi-line string
+================
+foo "This string
+strechtes over multiple
+lines" "second string"
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(string))
+		(value
+			(string))))
