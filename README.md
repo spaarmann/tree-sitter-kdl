@@ -61,3 +61,9 @@ ft_to_parser.kdl = "kdl"
    location>/queries/kdl`.
    (E.g. `mkdir queries/kdl/ && curl "https://raw.githubusercontent.com/spaarmann/tree-sitter-kdl/main/queries/highlights.scm" > queries/kdl/highlights.scm`)
 4. Start `nvim` on a KDL file and execute `:set ft=kdl` to make it recognize the filetype.
+
+To make nvim automatically detect the filetype, you can add a file containing
+```
+au BufRead,BufNewFile *.kdl		set filetype=kdl
+```
+into `nvim/ftdetect/`, see `:help ftdetect`.
