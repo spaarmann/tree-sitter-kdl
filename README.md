@@ -34,3 +34,30 @@ Additionally, the following things are not yet implemented:
 
 A very basic query file for tree-sitter syntax highlighting is also included in
 `queries/highlights.scm`.
+
+## Nvim installation
+
+If you want to already try out the current state using
+[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), you'll need to add it as a
+custom parser to your local config and manually insert the syntax highlighting query file. The
+steps are something like this:
+1. Add this snippet to your `init.lua` / inside a `lua` block in your `init.vim`:
+```lua
+local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+parser_config.kdl = {
+  install_info = {
+    url = "https://github.com/spaarmann/tree-sitter-kdl",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
+
+local ft_to_parser = require('nvim-treesitter.parsers').filetype_to_parsername
+ft_to_parser.kdl = "kdl"
+```
+2. Start `nvim` and run `:TSInstall kdl`.
+3. Install the syntax highlighting queries by downloading the
+   [highlights.scm](./queries/highlights.scm) file and placing it into `<nvim-treesitter install
+   location>/queries/kdl`.
+   (E.g. `mkdir queries/kdl/ && curl "https://raw.githubusercontent.com/spaarmann/tree-sitter-kdl/main/queries/highlights.scm" > queries/kdl/highlights.scm`)
+4. Start `nvim` on a KDL file and execute `:set ft=kdl` to make it recognize the filetype.
