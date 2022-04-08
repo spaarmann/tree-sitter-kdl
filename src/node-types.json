@@ -24,6 +24,21 @@
     }
   },
   {
+    "type": "multi_line_comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "multi_line_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "node",
     "named": true,
     "fields": {},
@@ -109,6 +124,22 @@
         }
       ]
     }
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "*/",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "/*",
+    "named": false
   },
   {
     "type": "//",

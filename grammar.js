@@ -2,7 +2,7 @@ module.exports = grammar({
 	name: 'kdl',
 
 	// See Whitespace table in spec; FEFF is explicitly allowed as whitespace in grammar
-	extras: $ => ["\t", " ", "\u00A0", "\u1680", /[\u2000-\u200A]/, "\u202F", "\u205F", "\u3000", "\uFEFF"],
+	extras: $ => ["\t", " ", "\u00A0", "\u1680", /[\u2000-\u200A]/, "\u202F", "\u205F", "\u3000", "\uFEFF", $.multi_line_comment],
 
 	word: $ => $.identifier,
 
@@ -41,5 +41,7 @@ module.exports = grammar({
 		_escline: $ => seq("\\", choice($.single_line_comment, $._newline)),
 
 		single_line_comment: $ => seq("//", repeat1(/[^\n]/), $._newline), // TODO EOF
+		multi_line_comment: $ => seq("/*", $._commented_block),
+		_commented_block: $ => choice("*/", seq(choice($.multi_line_comment, '*', '/', /[^*/]+/), $._commented_block)),
 	}
 });

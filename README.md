@@ -19,7 +19,7 @@ Supported elements:
   * [ ] Raw Strings
 * Comments:
   * [x] Single-line comments
-  * [ ] Multi-line comments
+  * [x] Multi-line comments
   * [ ] Slash-dash comments
 * [ ] Type annotations
 * [x] Line continuations

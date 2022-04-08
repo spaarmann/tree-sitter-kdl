@@ -42,3 +42,30 @@ another_node
 	(single_line_comment)
 	(node
 		(identifier)))
+
+================
+Multi-line comments
+================
+/* a comment */
+foo /* a comment following a node */
+
+/* a multi-line
+ * comment
+ */
+
+foo /* inline comment */ bar=true
+
+----------------
+(document
+	(multi_line_comment)
+	(node
+		(identifier)
+		(multi_line_comment))
+	(multi_line_comment)
+	(node
+		(identifier)
+		(multi_line_comment)
+		(prop
+			(identifier)
+			(value
+				(boolean)))))
