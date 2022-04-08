@@ -12,13 +12,14 @@ module.exports = grammar({
 
 		node: $ => seq($.identifier, optional($._escline), repeat($._node_prop_or_arg), optional($._node_children), $._node_terminator),
 
-		_node_prop_or_arg: $ => seq(choice($.prop, $.value), optional($._escline)),
+		_node_prop_or_arg: $ => seq(choice($.value, $.prop), optional($._escline)),
 		_node_children: $ => seq("{", optional($._linespace), repeat(seq($.node, optional($._linespace))), "}"),
 		_node_terminator: $ => choice(";", $.single_line_comment, $._newline), // TODO: eof
 
 		prop: $ => seq($.identifier, token.immediate("="), $.value),
 
-		identifier: $ => /[a-z][a-z0-9]*/, // TODO
+		identifier: $ => /([^+\-0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)|([+\-]([^0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)?)/,
+		//                ([      ident-char - digit - sign           ][             ident-char             ]*)|(sign ([ ident-char - digit                    ][ ident-char                         ]*)?)
 
 		value: $ => choice($.number, $.boolean, $.null, $.string), // TODO
 

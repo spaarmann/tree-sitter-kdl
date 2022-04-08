@@ -1,0 +1,17 @@
+================
+Bare identifiers
+================
+foo bar=0 +an_ident-with:chars=0
+
+----------------
+(document
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))))

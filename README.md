@@ -25,7 +25,6 @@ Supported elements:
 * [x] Line continuations
 
 Additionally, the following things are not yet implemented:
-* Full range of unicode identifier characters
 * EOF ending the last node; currently a trailing newline is required
 
 And lastly, the grammar currently matches some *invalid* files too. For example, KDL does not allow
