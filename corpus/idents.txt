@@ -3,6 +3,9 @@ Bare identifiers
 ================
 foo bar=0 +an_ident-with:chars=0
 
+// These should *not* parse, but I don't know if this is possible to test in tree-sitter-cli:
+// foo true=0 false=0 null=0 123=0 +10e1=0
+
 ----------------
 (document
 	(node
@@ -14,4 +17,6 @@ foo bar=0 +an_ident-with:chars=0
 		(prop
 			(identifier)
 			(value
-				(number)))))
+				(number))))
+	(single_line_comment)
+	(single_line_comment))

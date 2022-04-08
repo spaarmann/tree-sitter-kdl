@@ -26,6 +26,7 @@ foo // a node terminated by a comment
 bar \ // a comment following a line termination
     5.0
 // a trailing comment
+another_node
 
 ----------------
 (document
@@ -38,4 +39,6 @@ bar \ // a comment following a line termination
 		(single_line_comment)
 		(value
 			(number)))
-	(single_line_comment))
+	(single_line_comment)
+	(node
+		(identifier)))

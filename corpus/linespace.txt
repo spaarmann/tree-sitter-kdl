@@ -1,0 +1,13 @@
+================
+Empty lines
+================
+// A node separated from a comment by an empty line
+
+foo
+
+----------------
+(document
+	(single_line_comment)
+	(node
+		(identifier)))
+

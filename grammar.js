@@ -8,7 +8,7 @@ module.exports = grammar({
 	// to allow a node to be ended by EOF in addition to newline.
 
 	rules: {
-		document: $ => seq(optional($._linespace), repeat(seq($.node, optional($._linespace)))),
+		document: $ => seq(repeat($._linespace), repeat(seq($.node, repeat($._linespace)))),
 
 		node: $ => seq($.identifier, optional($._escline), repeat($._node_prop_or_arg), optional($._node_children), $._node_terminator),
 
@@ -19,7 +19,6 @@ module.exports = grammar({
 		prop: $ => seq($.identifier, token.immediate("="), $.value),
 
 		identifier: $ => /([^+\-0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)|([+\-]([^0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)?)/,
-		//                ([      ident-char - digit - sign           ][             ident-char             ]*)|(sign ([ ident-char - digit                    ][ ident-char                         ]*)?)
 
 		value: $ => choice($.number, $.boolean, $.null, $.string), // TODO
 
