@@ -29,6 +29,7 @@ Additionally, the following things are not yet implemented:
 
 And lastly, the grammar currently matches some *invalid* files too. For example, KDL does not allow
 whitespace immediately following the `=` in a property, but this grammar will currently accept it.
+Keywords like `true` and `null` are accepted as node names even though they should not be.
 
 ## Syntax highlighting
 

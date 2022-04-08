@@ -5,6 +5,9 @@ foo bar=0 +an_ident-with:chars=0
 
 // These should *not* parse, but I don't know if this is possible to test in tree-sitter-cli:
 // foo true=0 false=0 null=0 123=0 +10e1=0
+// This ↑ seems to correctly not parse, but this ↓ currently does even though it shouldn't.
+// We're in good company there at least though, e.g. the JS tree-sitter grammar does a similar thing.
+true bar=0
 
 ----------------
 (document
@@ -19,4 +22,12 @@ foo bar=0 +an_ident-with:chars=0
 			(value
 				(number))))
 	(single_line_comment)
-	(single_line_comment))
+	(single_line_comment)
+	(single_line_comment)
+	(single_line_comment)
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))))

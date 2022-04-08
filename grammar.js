@@ -4,6 +4,8 @@ module.exports = grammar({
 	// See Whitespace table in spec; FEFF is explicitly allowed as whitespace in grammar
 	extras: $ => ["\t", " ", "\u00A0", "\u1680", /[\u2000-\u200A]/, "\u202F", "\u205F", "\u3000", "\uFEFF"],
 
+	word: $ => $.identifier,
+
 	// TODO: We currently require a trailing newline at the end because I haven't figured out a way
 	// to allow a node to be ended by EOF in addition to newline.
 

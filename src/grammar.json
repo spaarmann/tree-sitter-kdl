@@ -1,5 +1,6 @@
 {
   "name": "kdl",
+  "word": "identifier",
   "rules": {
     "document": {
       "type": "SEQ",
