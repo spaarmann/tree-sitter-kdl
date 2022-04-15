@@ -4,6 +4,8 @@ module.exports = grammar({
 	// See Whitespace table in spec; FEFF is explicitly allowed as whitespace in grammar
 	extras: $ => ["\t", " ", "\u00A0", "\u1680", /[\u2000-\u200A]/, "\u202F", "\u205F", "\u3000", "\uFEFF", $.multi_line_comment],
 
+	externals: $ => [ $._raw_string ],
+
 	word: $ => $.identifier,
 
 	// TODO: We currently require a trailing newline at the end because I haven't figured out a way
@@ -22,7 +24,7 @@ module.exports = grammar({
 
 		identifier: $ => /([^+\-0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)|([+\-]([^0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)?)/,
 
-		value: $ => choice($.number, $.boolean, $.null, $.string), // TODO
+		value: $ => choice($.number, $.boolean, $.null, $.string),
 
 		number: $ => choice($._decimal, $._hex, $._octal, $._binary),
 		_binary: $ => /[+-]?0b[01][01_]*/,
@@ -33,7 +35,8 @@ module.exports = grammar({
 		boolean: $ => choice("false", "true"),
 		null: $ => "null",
 
-		string: $ => /"([^\\"]|\\([\\/bfnrt]|u\{[0-9a-fA-F]{1,6}\}))*"/, // TODO: raw strings
+		string: $ => choice($._escaped_string, $._raw_string),
+		_escaped_string: $ => /"([^\\"]|\\([\\/bfnrt]|u\{[0-9a-fA-F]{1,6}\}))*"/,
 
 		_linespace: $ => choice($._newline, $.single_line_comment),
 		_newline: $ => /\r\n|\r|\n|\u{0085}|\u{000C}|\u{2028}|\u{2029}/,

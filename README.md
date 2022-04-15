@@ -16,7 +16,7 @@ Supported elements:
   * [x] Booleans
   * [x] Numbers
   * [x] Escaped strings
-  * [ ] Raw Strings
+  * [x] Raw Strings
 * Comments:
   * [x] Single-line comments
   * [x] Multi-line comments

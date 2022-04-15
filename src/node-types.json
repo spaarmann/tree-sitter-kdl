@@ -99,6 +99,11 @@
     "fields": {}
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "value",
     "named": true,
     "fields": {},
@@ -167,10 +172,6 @@
   },
   {
     "type": "null",
-    "named": true
-  },
-  {
-    "type": "string",
     "named": true
   },
   {

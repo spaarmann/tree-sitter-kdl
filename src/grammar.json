@@ -273,6 +273,19 @@
       "value": "null"
     },
     "string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_escaped_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_raw_string"
+        }
+      ]
+    },
+    "_escaped_string": {
       "type": "PATTERN",
       "value": "\"([^\\\\\"]|\\\\([\\\\/bfnrt]|u\\{[0-9a-fA-F]{1,6}\\}))*\""
     },
@@ -432,7 +445,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_raw_string"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }

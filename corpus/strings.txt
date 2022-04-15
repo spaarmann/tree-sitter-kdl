@@ -45,3 +45,20 @@ lines" "second string"
 			(string))
 		(value
 			(string))))
+
+================
+Raw strings
+================
+just-escapes r"\n will be literal"
+quotes-and-escapes r#"hello\n\r\sd"world"#
+
+----------------
+(document
+	(node
+		(identifier)
+		(value
+			(string)))
+	(node
+		(identifier)
+		(value
+			(string))))
