@@ -36,6 +36,15 @@ Keywords like `true` and `null` are accepted as node names even though they shou
 A very basic query file for tree-sitter syntax highlighting is also included in
 `queries/highlights.scm`.
 
+## Contributing
+
+You can report any cases that either don't parse but should, or parse but shouldn't, as an issue, if
+they aren't already mentioned explicitly above.
+
+If you'd like to contribute bug fixes or missing features, I'd love any PRs you send my way :) If
+you want, feel free to contact me (issue in this repo, [Twitter DMs](https://twitter.com/s_paarmann/), 
+Discord `@spaar#8389`) before spending significant time on anything so we avoid duplicate work.
+
 ## Nvim installation
 
 If you want to already try out the current state using
@@ -48,7 +57,7 @@ local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
 parser_config.kdl = {
   install_info = {
     url = "https://github.com/spaarmann/tree-sitter-kdl",
-    files = { "src/parser.c" },
+    files = { "src/parser.c", "src/scanner.c" },
     branch = "main",
   },
 }
