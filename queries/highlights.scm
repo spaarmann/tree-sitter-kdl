@@ -1,3 +1,4 @@
+(node (identifier) @tag)
 (prop (identifier) @property)
 (number) @number
 (boolean) @keyword
