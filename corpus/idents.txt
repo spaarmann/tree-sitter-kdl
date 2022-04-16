@@ -31,3 +31,21 @@ true bar=0
 			(identifier)
 			(value
 				(number)))))
+
+================
+String identifiers
+================
+"foo" r#"\nbar"#=0 "+an_ident-with:chars"=0
+
+----------------
+(document
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(number)))
+		(prop
+			(identifier)
+			(value
+				(number)))))

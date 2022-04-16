@@ -6,7 +6,7 @@ module.exports = grammar({
 
 	externals: $ => [ $._raw_string ],
 
-	word: $ => $.identifier,
+	word: $ => $._bare_identifier,
 
 	// TODO: We currently require a trailing newline at the end because I haven't figured out a way
 	// to allow a node to be ended by EOF in addition to newline.
@@ -22,7 +22,8 @@ module.exports = grammar({
 
 		prop: $ => seq($.identifier, token.immediate("="), $.value),
 
-		identifier: $ => /([^+\-0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)|([+\-]([^0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)?)/,
+		identifier: $ => choice($._bare_identifier, $._escaped_string, $._raw_string),
+		_bare_identifier: $ => /([^+\-0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)|([+\-]([^0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)?)/,
 
 		value: $ => choice($.number, $.boolean, $.null, $.string),
 

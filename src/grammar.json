@@ -1,6 +1,6 @@
 {
   "name": "kdl",
-  "word": "identifier",
+  "word": "_bare_identifier",
   "rules": {
     "document": {
       "type": "SEQ",
@@ -194,6 +194,23 @@
       ]
     },
     "identifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_bare_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_escaped_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_raw_string"
+        }
+      ]
+    },
+    "_bare_identifier": {
       "type": "PATTERN",
       "value": "([^+\\-0-9\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"][^\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"]*)|([+\\-]([^0-9\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"][^\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"]*)?)"
     },

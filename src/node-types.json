@@ -24,6 +24,11 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "multi_line_comment",
     "named": true,
     "fields": {},
@@ -165,10 +170,6 @@
   {
     "type": "false",
     "named": false
-  },
-  {
-    "type": "identifier",
-    "named": true
   },
   {
     "type": "null",
