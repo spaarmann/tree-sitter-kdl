@@ -37,6 +37,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "identifier"
         },
@@ -215,23 +227,57 @@
       "value": "([^+\\-0-9\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"][^\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"]*)|([+\\-]([^0-9\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"][^\\u0000-\\u0020\\\\\\/\\(\\)\\{\\}<>;\\[\\]=,\"]*)?)"
     },
     "value": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "number"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "number"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "boolean"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "null"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            }
+          ]
+        }
+      ]
+    },
+    "type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
         },
         {
           "type": "SYMBOL",
-          "name": "boolean"
+          "name": "identifier"
         },
         {
-          "type": "SYMBOL",
-          "name": "null"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "string"
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },

@@ -14,7 +14,7 @@ module.exports = grammar({
 	rules: {
 		document: $ => seq(repeat($._linespace), repeat(seq($.node, repeat($._linespace)))),
 
-		node: $ => seq($.identifier, optional($._escline), repeat($._node_prop_or_arg), optional($._node_children), $._node_terminator),
+		node: $ => seq(optional($.type), $.identifier, optional($._escline), repeat($._node_prop_or_arg), optional($._node_children), $._node_terminator),
 
 		_node_prop_or_arg: $ => seq(choice($.value, $.prop), optional($._escline)),
 		_node_children: $ => seq("{", optional($._linespace), repeat(seq($.node, optional($._linespace))), "}"),
@@ -25,7 +25,9 @@ module.exports = grammar({
 		identifier: $ => choice($._bare_identifier, $._escaped_string, $._raw_string),
 		_bare_identifier: $ => /([^+\-0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)|([+\-]([^0-9\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"][^\u0000-\u0020\\\/\(\)\{\}<>;\[\]=,"]*)?)/,
 
-		value: $ => choice($.number, $.boolean, $.null, $.string),
+		value: $ => seq(optional($.type), choice($.number, $.boolean, $.null, $.string)),
+
+		type: $ => seq('(', $.identifier, ')'),
 
 		number: $ => choice($._decimal, $._hex, $._octal, $._binary),
 		_binary: $ => /[+-]?0b[01][01_]*/,

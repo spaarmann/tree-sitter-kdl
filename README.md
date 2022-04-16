@@ -21,7 +21,7 @@ Supported elements:
   * [x] Single-line comments
   * [x] Multi-line comments
   * [ ] Slash-dash comments
-* [ ] Type annotations
+* [x] Type annotations
 * [x] Line continuations
 
 Additionally, the following things are not yet implemented:

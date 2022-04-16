@@ -1,0 +1,48 @@
+================
+Node types
+================
+(entry)foo
+
+(parent)bar {
+	("child")blah
+	(r#"child"#)baz
+}
+
+----------------
+(document
+	(node
+		(type
+			(identifier))
+		(identifier))
+	(node
+		(type
+			(identifier))
+		(identifier)
+		(node
+			(type
+				(identifier))
+			(identifier))
+		(node
+			(type
+				(identifier))
+			(identifier))))
+
+================
+Value types
+================
+foo bar=(i32)-200 (name)"Attribute with type"
+
+----------------
+(document
+	(node
+		(identifier)
+		(prop
+			(identifier)
+			(value
+				(type
+					(identifier))
+				(number)))
+		(value
+			(type
+				(identifier))
+			(string))))
