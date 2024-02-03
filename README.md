@@ -1,3 +1,9 @@
+# ! Archived
+
+Archived in favour of
+[amaangq/tree-sitter-kdl](https://github.com/amaanq/tree-sitter-kdl) which is
+also the official `kdl` parser in `nvim-treesitter`.
+
 # tree-sitter-kdl
 
 Work-in-progress [KDL](https://github.com/kdl-org/kdl/) grammar for
